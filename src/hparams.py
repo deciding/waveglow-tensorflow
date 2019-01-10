@@ -6,7 +6,7 @@ parser = argparse.ArgumentParser(description='Tensorflow Implementation of WaveG
 
 ##Training Parameters##
 #Sizes
-parser.add_argument('--batch_size', dest='batch_size', type=int, default=4, help='Batch Size')
+parser.add_argument('--batch_size', dest='batch_size', type=int, default=2, help='Batch Size')
 parser.add_argument('--mel_time_step', dest='mel_time_step', type=int, default=64, help='Time Step of Inputs')
 #Optimizer
 parser.add_argument('--lr', dest='lr', type=float, default=1e-4, help='Initial Learning Rate')
@@ -25,22 +25,22 @@ parser.add_argument('--gpu_fraction', dest='gpu_fraction', type=float, default=0
 #parser.add_argument('--use_fp16', dest='use_fp16', default=False, action='store_false', help='True if use float16 for tensorcore acceleration')
 #parser.add_argument('--fp16_scale', dest='fp16_scale', type=float, default=128, help='Scaling factor for fp16 computation')
 #Normalization
-parser.add_argument('--use_weight_norm', dest='use_weight_norm', default=False, action='store_true',  help='Use Weight Normalization or not')
+parser.add_argument('--use_weight_norm', dest='use_weight_norm', default=True, action='store_true',  help='Use Weight Normalization or not')
 
 ##Inference##
 parser.add_argument('--do_infer', dest='is_training', default=True, action='store_false', help='Default to training mode, do inference if --do_infer is specified')
-parser.add_argument('--infer_mel_dir', dest='infer_mel_dir', default='/waveglow/training_mels', help='Path to inference numpy files of mel spectrogram')
-parser.add_argument('--infer_path', dest='infer_path', default='/waveglow/inference', help='Path to output inference wavs')
+parser.add_argument('--infer_mel_dir', dest='infer_mel_dir', default='waveglow/training_mels', help='Path to inference numpy files of mel spectrogram')
+parser.add_argument('--infer_path', dest='infer_path', default='waveglow/inference', help='Path to output inference wavs')
 
 ##Sampling##
-parser.add_argument('--truncate_sample', dest='truncate_sample', default=False, action='store_true', help='Truncate the infer input mels to truncate_step due to GPU memory consideration or not')
+parser.add_argument('--truncate_sample', dest='truncate_sample', default=True, action='store_true', help='Truncate the infer input mels to truncate_step due to GPU memory consideration or not')
 parser.add_argument('--truncate_step', dest='truncate_step', type=float, default=384, help='Truncate the infer input mels to truncate_step due to GPU memory consideration')
 
 ##Input Path##
-parser.add_argument('--metadata_dir', dest='metadata_dir', default='/LJSpeech-1.1/metadata.csv', help='Path to metadata.csv')
-parser.add_argument('--dataset_dir', dest='dataset_dir', default='/LJSpeech-1.1/wavs', help='Path to audio file for preprocessing dataset')
-parser.add_argument('--mel_dir', dest='mel_dir', default='/waveglow/training_mels', help='Path to input mel spectrogram (Output directory for processing dataset)')
-parser.add_argument('--wav_dir', dest='wav_dir', default='/waveglow/training_wavs', help='Path to input audio file for training (Output directory for processing dataset)')
+parser.add_argument('--metadata_dir', dest='metadata_dir', default='LJSpeech-1.1/metadata.csv', help='Path to metadata.csv')
+parser.add_argument('--dataset_dir', dest='dataset_dir', default='LJSpeech-1.1/wavs', help='Path to audio file for preprocessing dataset')
+parser.add_argument('--mel_dir', dest='mel_dir', default='waveglow/training_mels', help='Path to input mel spectrogram (Output directory for processing dataset)')
+parser.add_argument('--wav_dir', dest='wav_dir', default='waveglow/training_wavs', help='Path to input audio file for training (Output directory for processing dataset)')
 
 ##Output Path##
 parser.add_argument('--saving_path', dest='saving_path', default='../model', help='Path to save model if specified')

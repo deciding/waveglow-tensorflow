@@ -51,7 +51,7 @@ def process_one_dir():
 #    clean_dir(args.mel_dir)
 #    print ("Cleaning Output Directory %s" %args.wav_dir)
 #    clean_dir(args.wav_dir)
-    with open(args.metadata_dir, 'r') as f:
+    with open(args.metadata_dir, 'r', encoding='utf-8') as f:
         lines = f.readlines()
     for line in tqdm(lines):
         wavname, _, text = line.strip().split('|')

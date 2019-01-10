@@ -42,7 +42,7 @@ class multiproc_reader():
         random.shuffle(self.metadata)
 
     def load_metadata(self):
-        with open(args.metadata_dir, 'r') as f:
+        with open(args.metadata_dir, 'r', encoding='utf-8') as f:
             self.metadata = [line.strip().split('|') for line in f]
         self.metadata = self.metadata[: int(len(self.metadata) * args.valsplit)]
         self.n_examples = len(self.metadata)
@@ -89,7 +89,7 @@ class multiproc_reader():
 
 class multiproc_reader_val(multiproc_reader):
     def load_metadata(self):
-        with open(args.metadata_dir, 'r') as f:
+        with open(args.metadata_dir, 'r', encoding='utf-8') as f:
             self.metadata = [line.strip().split('|') for line in f]
             self.metadata = self.metadata[int(len(self.metadata) * args.valsplit): ]
         self.n_examples = len(self.metadata)
